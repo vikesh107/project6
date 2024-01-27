@@ -47,26 +47,6 @@ namespace Project6.Controllers
 
             return Ok(customer);
         }
-
-        [HttpGet("Vendors")]
-        public IActionResult GetVendors()
-        {
-            var vendors = _context.Vendors.Where(v=>v.IsActive==true).ToList();
-            return Ok(vendors);
-        }
-
-        [HttpGet("Vendors/{id}")]
-        public IActionResult GetVendorDetails([FromRoute] int id)
-        {
-            var vendor = _context.Vendors.FirstOrDefault(u => u.VendorId == id);
-            if (vendor == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(vendor);
-        }
-
         [HttpPost("Vendors/Deactivate/{id}")]
         public IActionResult DeactivateVendor([FromRoute] int id)
         {
