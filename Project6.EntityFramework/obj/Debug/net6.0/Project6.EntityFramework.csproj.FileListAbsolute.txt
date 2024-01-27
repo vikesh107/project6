@@ -1,0 +1,5 @@
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6.EntityFramework\obj\Debug\net6.0\Project6.EntityFramework.csproj.AssemblyReference.cache
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6.EntityFramework\obj\Debug\net6.0\Project6.EntityFramework.GeneratedMSBuildEditorConfig.editorconfig
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6.EntityFramework\obj\Debug\net6.0\Project6.EntityFramework.AssemblyInfoInputs.cache
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6.EntityFramework\obj\Debug\net6.0\Project6.EntityFramework.AssemblyInfo.cs
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6.EntityFramework\obj\Debug\net6.0\Project6.EntityFramework.csproj.CoreCompileInputs.cache
