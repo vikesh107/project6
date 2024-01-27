@@ -69,5 +69,22 @@ namespace Project6.Controllers
             _context.SaveChanges();
             return Ok(product);
         }
+
+        [HttpGet("IsProductInterested/{customerId}")]
+        public IActionResult IsProductInterested([FromRoute] int customerId)
+        {
+            var data = from cinterest in _context.Customerinterests                   
+                       join product in _context.Products
+                       on cinterest.ProductId equals product.ProductId
+                       where cinterest.CustomerId == customerId
+                       select new {
+                           Name = product.ProductName,
+                           Price = product.Price,
+                           Image = product.ImageUrl,
+                           category = product.Category.CategoryName,
+                           Reating = product.Productratings.Any() ? (decimal)product.Productratings.Sum(x => x.Rating) / product.Productratings.Count : 0,
+                       };
+            return Ok(data);
+        }
     }
 }
