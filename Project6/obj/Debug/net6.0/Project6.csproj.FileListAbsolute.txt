@@ -54,3 +54,11 @@ D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Syste
 D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Project6.EnttiyFrameworkCore.dll
 D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Project6.EnttiyFrameworkCore.pdb
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Vikesh Workspace\Server Side\Web-Api\Project6\Project6\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

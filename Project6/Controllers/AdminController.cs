@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Project6.EnttiyFrameworkCore.Models;
+using System.Data;
+using System.Security.Claims;
 
 namespace Project6.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")] // Only users with the "Admin" role can access these actions
     public class AdminController : ControllerBase
     {
         private readonly MyDbContext _context;
@@ -60,6 +64,13 @@ namespace Project6.Controllers
             _context.SaveChanges();
 
             return Ok(vendor);
+        }
+
+        [HttpGet("InspectClaims")]
+        public IActionResult InspectClaims()
+        {
+            var roles = User.FindAll(ClaimTypes.Role).Select(c => c.Value).ToList();
+            return Ok(new { Roles = roles });
         }
     }
 }
