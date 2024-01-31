@@ -55,26 +55,29 @@ namespace Project6.Controllers
             }
 
             // Assume successful login, generate JWT token
-            var token = GenerateJwtToken(user.Role);
+            var token = GenerateJwtToken1(user);
 
             return Ok(new { Token = token });
         }
 
-        private string GenerateJwtToken(string role)
+
+        private string GenerateJwtToken1(User user)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("vikesh123@12345678901234567890ABCD"); // Replace with your secret key
-            var tokenDescriptor = new SecurityTokenDescriptor
+            var claims = new List<Claim>
             {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Role, role)
-                }),
-                Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+               new Claim(ClaimTypes.Name, user.Username),
+               new Claim(ClaimTypes.Role, user.Role),
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(30), // Set the token expiration time
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("vikesh123@12345678901234567890ABCD")), SecurityAlgorithms.HmacSha256),
+                audience: "https://localhost:44396",
+                issuer: "https://localhost:44396"
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

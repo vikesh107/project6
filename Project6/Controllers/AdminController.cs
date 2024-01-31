@@ -8,16 +8,17 @@ namespace Project6.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")] // Only users with the "Admin" role can access these actions
     public class AdminController : ControllerBase
     {
         private readonly MyDbContext _context;
+        
 
         public AdminController(MyDbContext context)
         {
             _context = context;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("Customers")]
         public IActionResult GetCustomers()
         {

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Project6.EnttiyFrameworkCore.Models;
 using System.Text;
 
@@ -19,46 +18,48 @@ namespace Project6
             builder.Services.AddEndpointsApiExplorer();
 
 
-            var key = Encoding.ASCII.GetBytes("vikesh123@12345678901234567890ABCD");
-            builder.Services.AddAuthentication(x =>
+            builder.Services.AddAuthentication(options =>
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(x =>
+            .AddJwtBearer(options =>
             {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("vikesh123@12345678901234567890ABCD")),
+                    ValidateAudience = true, 
+                    ValidAudience = "https://localhost:44396",
                     ValidateIssuer = true,
-                    ValidateAudience = true
+                    ValidIssuer = "https://localhost:44396"
+
                 };
             });
-            //builder.Services.AddSwaggerGen();
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
 
-                // Configure JWT Bearer token authentication
-                var securityScheme = new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Description = "JWT Authorization header using the Bearer scheme",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                };
 
-                c.AddSecurityDefinition("Bearer", securityScheme);
-                var securityRequirement = new OpenApiSecurityRequirement
-                {
-                    { securityScheme, new[] { "Bearer" } }
-                };
-                c.AddSecurityRequirement(securityRequirement);
-            });
+            builder.Services.AddSwaggerGen();
+            //builder.Services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
+
+            //    // Configure JWT Bearer token authentication
+            //    var securityScheme = new OpenApiSecurityScheme
+            //    {
+            //        Name = "Authorization",
+            //        Description = "JWT Authorization header using the Bearer scheme",
+            //        In = ParameterLocation.Header,
+            //        Type = SecuritySchemeType.ApiKey,
+            //        Scheme = "Bearer"
+            //    };
+
+            //    c.AddSecurityDefinition("Bearer", securityScheme);
+            //    var securityRequirement = new OpenApiSecurityRequirement
+            //    {
+            //        { securityScheme, new[] { "Bearer" } }
+            //    };
+            //    c.AddSecurityRequirement(securityRequirement);
+            //});
             builder.Services.AddDbContext<MyDbContext>();
             var app = builder.Build();
 
@@ -70,6 +71,8 @@ namespace Project6
             }
 
             app.UseHttpsRedirection();
+
+            //Add for this Autherization And Authentication by Token Bearer.
             app.UseAuthentication();
             app.UseAuthorization();
 
